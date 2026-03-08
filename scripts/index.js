@@ -1,10 +1,11 @@
-import {cart} from '../data/cart.js';
-import {products} from '../data/products.js';
+import { cart, addToCart, updateCartQuantity } from '../data/cart.js';
+import { products } from '../data/products.js';
 
 let productsHTML = '';
 
-products.forEach(product => {
 
+
+products.forEach(product => {
 
     // Accumulator Pattern
     productsHTML += `
@@ -42,31 +43,8 @@ document.querySelectorAll(".js-add-to-cart")
     .forEach((button) => {
         button.addEventListener('click', () => {
             const productId = button.dataset.productId;
-
-            let matcheditem;
-            cart.forEach((cartItem) => {
-                if (cartItem.productId === productId) {
-                    matcheditem = cartItem;
-                }
-            })
-            if (matcheditem) {
-                matcheditem.quantity += 1;
-            }
-            else {
-                cart.push({
-                    productId: productId,
-                    quantity: 1,
-                })
-            }
-
-            let cartQuantity=0;
-
-            cart.forEach(cartItem =>{
-               cartQuantity += cartItem.quantity;
-            })
-
-            document.querySelector('.js-cart-quantity').textContent = cartQuantity > 10 ? "10+" : cartQuantity;
-          
+            addToCart(productId);
+            updateCartQuantity();
         })
     })
 
