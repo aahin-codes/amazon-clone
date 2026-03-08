@@ -1,9 +1,9 @@
 
 
-let productsHTML ='';
+let productsHTML = '';
 
-products.forEach(product=>{
-   
+products.forEach(product => {
+
 
     // Accumulator Pattern
     productsHTML += `
@@ -31,9 +31,35 @@ products.forEach(product=>{
                 <option value="9">9</option>
                 <option value="10">10</option>
             </select>
-            <button>Add to Cart</button>
+            <button class="js-add-to-cart" data-product-id="${product.id}">Add to Cart</button>
          </div>
     `
 })
 
 document.querySelector('.js-products-container').innerHTML = productsHTML;
+document.querySelectorAll(".js-add-to-cart")
+    .forEach((button) => {
+        button.addEventListener('click', () => {
+            const productId = button.dataset.productId;
+
+            let matcheditem;
+            cart.forEach((cartItem) => {
+                if (cartItem.productId === productId) {
+                    matcheditem = cartItem;
+                }
+            })
+            if (matcheditem) {
+                matcheditem.quantity += 1;
+            }
+            else {
+                cart.push({
+                    productId: productId,
+                    quantity: 1,
+                })
+            }
+
+            // console.log(cart)
+        })
+    })
+
+
