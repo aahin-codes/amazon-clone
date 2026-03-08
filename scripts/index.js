@@ -1,41 +1,9 @@
-const products = [
-    {
-        image:'https://m.media-amazon.com/images/I/713n+TxyfCL._SX522_.jpg',
-        altName:"Polo T Shirt",
-        name:'Amazon Brand - Symbol Men\'s Cotton Rich Solid Polo Tshirt | Collar Tshirts | Half Sleeves | Plain-Regular Fit (Available in Plus Sizes)',
-        rating:{
-            stars:4.5,
-            count:120
-        },
-        priceCents:277
-    },
-    {
-        image:'https://m.media-amazon.com/images/I/71fhuffKqCL._AC_UL480_FMwebp_QL65_.jpg',
-        altName:"Polo T Shirt", 
-        name:'Polo T Shirt for Men || T Shirt for Man || Collar Style (Packs Also Available) (121-124)',
-        rating:{
-            stars:3.5,
-            count:110
-        },
-        priceCents:284
-    },
-    {
-        image:'https://m.media-amazon.com/images/I/61WYx598KKL._AC_UL480_FMwebp_QL65_.jpg',
-        altName:"Oversized T Shirt",
-        name:'Men\'s Half Sleeve Round Neck Cottonblend Graphic Print Oversized Tshirt for Man',
-        rating:{
-            stars:2.5,
-            count:80
-        },
-        priceCents:170
-    }
-];
+
 
 let productsHTML ='';
 
 products.forEach(product=>{
-    let fullStars = Math.floor(product.rating.stars);
-    let halfStar = product.rating.stars%1;
+   
 
     // Accumulator Pattern
     productsHTML += `
@@ -46,10 +14,7 @@ products.forEach(product=>{
             <div class="product-name">${product.name}</div>
             <div class="rating-container">
                 <div class="star-container">
-                ${
-                    Array(fullStars).fill('<img src="./assets/full-star.png" alt="Single Full Star">').join('') +
-                    (halfStar ? '<img src="./assets/half-star.png" alt="Single Half Star">' : '')
-                 }
+               <img src="assets/images/ratings/rating-${product.rating.stars * 10}.png" alt="Single Full Star">
                 </div>
                 <span>${product.rating.count}</span>
             </div>
