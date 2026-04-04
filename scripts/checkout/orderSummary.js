@@ -3,6 +3,7 @@ import { getProduct, products } from "../../data/products.js";
 import formatCurrency from "../utils/money.js";
 import { deliveryOptions, getDeliveryOption } from "../../data/deliveryOptions.js";
 import { updateDeliveryOption } from "../../data/cart.js";
+import { renderPaymentSummary } from "./paymentSummary.js";
 
 
 export function renderOrderSummary() {
@@ -76,6 +77,8 @@ export function renderOrderSummary() {
                 removeFromCart(productId);
                 const container = document.querySelector(`.js-product-${productId}`);
                 container.remove();
+                renderPaymentSummary();
+
             })
         });
 
@@ -87,6 +90,7 @@ export function renderOrderSummary() {
 
                 updateDeliveryOption(productId, deliveryOptionId);
                 renderOrderSummary();
+                renderPaymentSummary();
             })
         })
 }
