@@ -17,11 +17,11 @@ products.forEach(product => {
             <div class="product-name">${product.name}</div>
             <div class="rating-container">
                 <div class="star-container">
-               <img src="assets/images/ratings/rating-${product.rating.stars * 10}.png" alt="Single Full Star">
+               <img src="${product.getStarsUrl()}" alt="Single Full Star">
                 </div>
                 <span>${product.rating.count}</span>
             </div>
-            <div class="product-price">$${formatCurrency(product.priceCents)}</div>
+            <div class="product-price">$${product.getPrice()}</div>
             <select name="count">
                 <option value="1">1</option>
                 <option value="2">2</option>

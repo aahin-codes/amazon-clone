@@ -32,7 +32,7 @@ export function renderOrderSummary() {
                     alt="Product Image">
                 <div class="product-info">
                     <p>${matchingProduct.name}</p>
-                    <p>$${formatCurrency(matchingProduct.priceCents)}</p>
+                    <p>$${matchingProduct.getPrice()}</p>
                     <div class="test-product-quantity-${matchingProduct.id}">Quantity: <span>${cartItem.quantity}</span> <span>Update</span><span class="delete-quantity-link js-delete-quantity-link test-js-delete-quantity-link-${matchingProduct.id}" data-product-id="${matchingProduct.id}">Delete</span></div>
                 </div>
             </div>
