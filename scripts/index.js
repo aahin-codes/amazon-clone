@@ -1,15 +1,18 @@
 import { cart, addToCart, updateCartQuantity } from '../data/cart.js';
-import { products } from '../data/products.js';
+import { loadProducts, products } from '../data/products.js';
 import formatCurrency from './utils/money.js';
 
-let productsHTML = '';
+loadProducts(renderProductsGrid);
+
+function renderProductsGrid() {
+
+    let productsHTML = '';
 
 
+    products.forEach(product => {
 
-products.forEach(product => {
-
-    // Accumulator Pattern
-    productsHTML += `
+        // Accumulator Pattern
+        productsHTML += `
      <div class="product">
             <figure class="product-image-container">
                 <img src="${product.image}" alt="${product.altName}">
@@ -38,16 +41,16 @@ products.forEach(product => {
             <button class="js-add-to-cart" data-product-id="${product.id}">Add to Cart</button>
          </div>
     `
-})
-
-document.querySelector('.js-products-container').innerHTML = productsHTML;
-document.querySelectorAll(".js-add-to-cart")
-    .forEach((button) => {
-        button.addEventListener('click', () => {
-            const productId = button.dataset.productId;
-            addToCart(productId);
-            updateCartQuantity();
-        })
     })
 
+    document.querySelector('.js-products-container').innerHTML = productsHTML;
+    document.querySelectorAll(".js-add-to-cart")
+        .forEach((button) => {
+            button.addEventListener('click', () => {
+                const productId = button.dataset.productId;
+                addToCart(productId);
+                updateCartQuantity();
+            })
+        })
+};
 
