@@ -67,7 +67,10 @@ export function loadProductsFetch() {
       return new Product(productDetails);
     });
     console.log('load products');
-  });
+  })
+  // .catch(()=>{
+  //   console.log('Unexpected error. Please try again later.');
+  // });
 
   return promise;
 }
@@ -97,6 +100,10 @@ export function loadProducts(fun) {
     // console.log(products);
 
 
+  });
+  xhr.addEventListener('error',(error)=>{
+    console.log('Unexpected error. Please try again later.');
+    
   })
 }
 // loadProducts();
